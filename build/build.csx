@@ -9,7 +9,10 @@ using Octokit;
 
 
 var currentTag = Git.GetCurrentTag();
-
+if (!string.IsNullOrWhiteSpace(currentTag))
+{
+    string previousTag = Git.GetPreviousTag();
+} 
 
 
 var accessToken = System.Environment.GetEnvironmentVariable("GITHUB_REPO_TOKEN");

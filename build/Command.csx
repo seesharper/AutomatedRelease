@@ -6,20 +6,28 @@ using System.Text.RegularExpressions;
 
 public static class Command
 {              
-    public static string Execute(string commandPath, string arguments, bool captureOutput)
+    public static void Execute(string commandPath, string arguments)
     {
         var startInformation = CreateProcessStartInfo(commandPath, arguments);
-        StringBuilder output = captureOutput ? new StringBuilder() : null;
-
-        var process = CreateProcess(startInformation, output);                        
+        
+        var process = CreateProcess(startInformation);                        
         RunAndWait(process);                
                
         if (process.ExitCode != 0)
         {                                  
             throw new InvalidOperationException("Command failed");
-        }                   
-        return output?.ToString();
+        }                           
     }
+
+    public static (int exitCode, string output) Capture(string commandPath, string arguments)
+    {
+        var startInformation =  CreateProcessStartInfo(commandPath, arguments);
+        var output = new StringBuilder();
+        var process = CreateProcess(startInformation, output);
+        RunAndWait(process);
+        return (process.ExitCode, output.ToString());
+    }
+
 
     private static ProcessStartInfo CreateProcessStartInfo(string commandPath, string arguments)
     {
@@ -39,7 +47,7 @@ public static class Command
         process.BeginOutputReadLine();         
         process.WaitForExit();                
     }
-    private static Process CreateProcess(ProcessStartInfo startInformation, StringBuilder output)
+    private static Process CreateProcess(ProcessStartInfo startInformation, StringBuilder output = null)
     {
         var process = new Process();
         process.StartInfo = startInformation;  
@@ -55,7 +63,17 @@ public static class Command
             }
             
         };
-        process.ErrorDataReceived += (s,e) => Logger.Log(e.Data);
+        process.ErrorDataReceived += (s,e) => 
+        {
+            if (output != null && e.Data != null)
+            {
+                output.AppendLine(e.Data);
+            }
+            else
+            {
+                Logger.Log(e.Data);
+            }            
+        };
         return process;
     }
 }
