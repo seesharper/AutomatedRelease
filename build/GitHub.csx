@@ -9,7 +9,7 @@ public static class GitHub
 {
     public static void Pack(string pathToPublishFolder, string githubReleaseFolder)
     {
-        //ChangeLog.Generate(Path.Combine(githubReleaseFolder, "CHANGELOG.MD"));
+        ChangeLog.Generate(Path.Combine(githubReleaseFolder, "CHANGELOG.MD"));
         string latestTag = Git.GetLatestTag();
         string projectName = "AutomatedRelease";
         string zipFileName = $"{projectName}.{latestTag}.zip";
