@@ -2,10 +2,10 @@ version: 1.0.{build}
 image: Visual Studio 2017
 build_script:
 - ps: >-
-    choco install dotnet.script
+    (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex    
     cd .\build\    
 - cmd:
-    dotnet .\dotnet-script\dotnet-script.dll build.csx
+    dotnet script build.csx
 
 test: off
 environment:
