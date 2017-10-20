@@ -10,21 +10,14 @@
 #load "NuGet.csx"
 
 using System.Net.Http;
-using Octokit;
 
-
-//DotNet.Build(BuildContext.PathToProjectFolder);
-//TEST HERE
-//DotNet.Publish(BuildContext.PathToProjectFolder);
+DotNet.Build(BuildContext.PathToProjectFolder);
+DotNet.Publish(BuildContext.PathToProjectFolder);
 DotNet.Pack(BuildContext.PathToProjectFolder, BuildContext.NuGetPackagesFolder);
 GitHub.Pack(BuildContext.PathToPublishFolder, BuildContext.GitHubReleaseFolder);
 
-
 if (Git.IsOnMaster() && Git.IsTagCommit())
-{    
-    
-   // NuGet.Push(BuildContext.NuGetPackagesFolder);
-    GitHub.CreateReleaseDraft(BuildContext.GitHubReleaseFolder);   
-    //Choco.Publish(BuildContext.ChocolateyPackageFolder);
-    //Github.Publish(BuildContext.GitHubReleaseFolder);   
+{        
+    NuGet.Push(BuildContext.NuGetPackagesFolder);
+    GitHub.CreateReleaseDraft(BuildContext.GitHubReleaseFolder);       
 }

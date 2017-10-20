@@ -27,8 +27,7 @@ public static class GitHub
         var newRelease = new NewRelease(latestTag);
         newRelease.Name = latestTag;
         newRelease.Body = releaseNotes;
-        newRelease.Draft = true;
-        
+        newRelease.Draft = true;        
         newRelease.Prerelease = latestTag.Contains("-");
 
         var tokenAuth = new Credentials(accessToken); 
@@ -42,7 +41,7 @@ public static class GitHub
             var archiveContents = File.OpenRead(asset);
             var assetUpload = new ReleaseAssetUpload() 
             {
-                FileName = "my-cool-project-1.0.zip",
+                FileName = Path.GetFileName(asset),
                 ContentType = "application/zip",
                 RawData = archiveContents
             };
