@@ -1,15 +1,11 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 install:
-- set PATH=C:\Ruby24-x64\bin;%PATH%
+- SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
 - ruby -v
 build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
-
-- gem install github_changelog_generator --prerelease
-- gem list           
-- cmd: refreshenv
 - cmd: dotnet script build.csx
     
 
@@ -19,3 +15,5 @@ environment:
         secure: FSPXTPuTgFMaZA7DubJoX217SkWhFLN2BGqCCi4gBux967eFtwkhbrafm7ay8cP2
     NUGET_APIKEY:
         secure: ynFcRQX0oim3DdR5Y8s4BtynS/NYRG059GvWGckqhpZGNZVvhvvn5UUWgsyPKLKm
+    matrix:
+    - ruby_version: "21-x64"
