@@ -6,7 +6,15 @@ public static class ChangeLog
 {
     static ChangeLog()
     {
-        Command.Execute("cmd.exe", "/c gem install github_changelog_generator --prerelease --force");
+        try
+        {
+            Command.Execute("cmd.exe", "/c gem install github_changelog_generator --prerelease --force");    
+        }
+        catch (System.Exception)
+        {            
+         //   throw;
+        }
+        
     }
     
     public static void Generate(string pathToChangeLog)
