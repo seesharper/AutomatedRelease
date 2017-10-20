@@ -3,6 +3,7 @@ image: Visual Studio 2017
 install:
 - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
 - ruby -v
+- ps: Remove-Item .\C:\Ruby123 -Force -Recurse
 build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
@@ -17,4 +18,4 @@ environment:
     NUGET_APIKEY:
         secure: ynFcRQX0oim3DdR5Y8s4BtynS/NYRG059GvWGckqhpZGNZVvhvvn5UUWgsyPKLKm
     matrix:
-    - ruby_version: "21-x64"
+    - ruby_version: "21"
