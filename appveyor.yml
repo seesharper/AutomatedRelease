@@ -1,9 +1,9 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 build_script:
-- ps: >-
-    (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex    
-    cd .\build\    
+- ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
+- ps: cd .\build\
+           
 - cmd:
     dotnet script build.csx
 
