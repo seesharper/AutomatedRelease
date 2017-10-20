@@ -3,7 +3,7 @@ image: Visual Studio 2017
 install:
 - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
 - ruby -v
-- ps: Remove-Item .\C:\Ruby123 -Force -Recurse
+- ps: Remove-Item C:\Ruby193 -Force -Recurse
 build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
