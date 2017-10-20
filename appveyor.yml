@@ -4,8 +4,9 @@ build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
            
-- cmd:
-    dotnet script build.csx
+- cmd: refreshenv
+- cmd: dotnet script build.csx
+    
 
 test: off
 environment:
