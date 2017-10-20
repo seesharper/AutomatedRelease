@@ -1,5 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+install:
+- set PATH=C:\Ruby24-x64\bin;%PATH%
 build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
