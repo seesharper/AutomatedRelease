@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 install:
-- SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+- SET PATH=C:\Ruby21\bin;%PATH%
 - ruby -v
 - ps: Remove-Item C:\Ruby193 -Force -Recurse
 build_script:
@@ -17,5 +17,4 @@ environment:
         secure: FSPXTPuTgFMaZA7DubJoX217SkWhFLN2BGqCCi4gBux967eFtwkhbrafm7ay8cP2
     NUGET_APIKEY:
         secure: ynFcRQX0oim3DdR5Y8s4BtynS/NYRG059GvWGckqhpZGNZVvhvvn5UUWgsyPKLKm
-    matrix:
-    - ruby_version: "21"
+    
