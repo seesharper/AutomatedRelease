@@ -7,7 +7,8 @@ build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
 
-- gem install github_changelog_generator --prerelease --force           
+- gem install github_changelog_generator --prerelease
+- gem list           
 - cmd: refreshenv
 - cmd: dotnet script build.csx
     
