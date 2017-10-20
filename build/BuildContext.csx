@@ -6,11 +6,13 @@ public static class BuildContext
     static BuildContext()
     {
         Root = Path.GetDirectoryName(GetScriptPath());
-        GitHubReleaseFolder = Path.Combine(Root,"GitHubRelease");
+        var artifactsFolder = Path.Combine(Root,"Artifacts");
+        FileUtils.CreateDirectory(Path.Combine(Root,"Artifacts"));
+        GitHubReleaseFolder = Path.Combine(artifactsFolder,"GitHubRelease");
         FileUtils.CreateDirectory(GitHubReleaseFolder);
-        NuGetPackagesFolder = Path.Combine(Root,"NuGet");
+        NuGetPackagesFolder = Path.Combine(artifactsFolder,"NuGet");
         FileUtils.CreateDirectory(NuGetPackagesFolder);
-        ChocolateyPackagesFolder = Path.Combine(Root,"Chocolatey");
+        ChocolateyPackagesFolder = Path.Combine(artifactsFolder,"Chocolatey");
         FileUtils.CreateDirectory(ChocolateyPackagesFolder);        
         PathToProjectFolder = Path.Combine(Root, "../");
         PathToPublishFolder = Path.Combine(PathToProjectFolder, "bin/Release/netstandard2.0/publish");
