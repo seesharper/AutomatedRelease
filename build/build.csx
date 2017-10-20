@@ -2,44 +2,29 @@
 #r "nuget:NetStandard.Library,1.6.1"
 #r "nuget:Octokit, 0.27.0"
 #load "Git.csx"
-
+#load "Changelog.csx"
+#load "BuildContext.csx"
+#load "DotNet.csx"
+#load "FileUtils.csx"
+#load "GitHub.csx"
+#load "NuGet.csx"
 
 using System.Net.Http;
 using Octokit;
 
 
-var currentTag = Git.GetCurrentTag();
-if (!string.IsNullOrWhiteSpace(currentTag))
-{
-    string previousTag = Git.GetPreviousTag();
-} 
+//DotNet.Build(BuildContext.PathToProjectFolder);
+//TEST HERE
+//DotNet.Publish(BuildContext.PathToProjectFolder);
+DotNet.Pack(BuildContext.PathToProjectFolder, BuildContext.NuGetPackagesFolder);
+GitHub.Pack(BuildContext.PathToPublishFolder, BuildContext.GitHubReleaseFolder);
 
 
-var accessToken = System.Environment.GetEnvironmentVariable("GITHUB_REPO_TOKEN");
-var client = new GitHubClient(new ProductHeaderValue("dotnet-script"));
-var tokenAuth = new Credentials(accessToken); 
-client.Credentials = tokenAuth;
-
-// Get the current tag 
-
-
-
-var newRelease = new NewRelease("1.0.0");
-newRelease.Name = "Version One Point Oh";
-newRelease.Body = "**This** is some *Markdown*";
-newRelease.Draft = true;
-newRelease.Prerelease = false;
-
-var result = await client.Repository.Release.Create("seesharper", "automatedrelease", newRelease);
-var test = await client.Git.Tag.Get("","","");
-
-
-
-
-
-
-
-
-
-
-
+if (Git.IsOnMaster() && Git.IsTagCommit())
+{    
+    
+   // NuGet.Push(BuildContext.NuGetPackagesFolder);
+    GitHub.CreateReleaseDraft(BuildContext.GitHubReleaseFolder);   
+    //Choco.Publish(BuildContext.ChocolateyPackageFolder);
+    //Github.Publish(BuildContext.GitHubReleaseFolder);   
+}

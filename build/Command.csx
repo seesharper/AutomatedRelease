@@ -17,15 +17,20 @@ public static class Command
         {                                  
             throw new InvalidOperationException("Command failed");
         }                           
+        
     }
 
-    public static (int exitCode, string output) Capture(string commandPath, string arguments)
+    public static string Capture(string commandPath, string arguments)
     {
         var startInformation =  CreateProcessStartInfo(commandPath, arguments);
         var output = new StringBuilder();
         var process = CreateProcess(startInformation, output);
         RunAndWait(process);
-        return (process.ExitCode, output.ToString());
+        if (process.ExitCode != 0)
+        {                                  
+            throw new InvalidOperationException("Command failed");
+        } 
+        return output.ToString();
     }
 
 
@@ -63,6 +68,7 @@ public static class Command
             }
             
         };
+
         process.ErrorDataReceived += (s,e) => 
         {
             if (output != null && e.Data != null)
@@ -74,6 +80,7 @@ public static class Command
                 Logger.Log(e.Data);
             }            
         };
+
         return process;
     }
 }
