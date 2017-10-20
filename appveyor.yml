@@ -3,11 +3,11 @@ image: Visual Studio 2017
 install:
 - set PATH=C:\Ruby24-x64\bin;%PATH%
 - ruby -v
-- gem install github_changelog_generator --prerelease --force
 build_script:
 - ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - ps: cd .\build\
-           
+
+- gem install github_changelog_generator --prerelease --force           
 - cmd: refreshenv
 - cmd: dotnet script build.csx
     
