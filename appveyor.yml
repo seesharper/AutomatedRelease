@@ -23,6 +23,8 @@ build_script:
     
     cd build
 
+    refreshenv
+
     dotnet script build.csx
 
     
