@@ -16,6 +16,7 @@ build_script:
     C:\Ruby24\bin\github_changelog_generator -v
 
 - cmd: 
+    SET PATH
     github_changelog_generator -v
 
 test: off
