@@ -5,7 +5,9 @@ build_script:
 - ps: >- 
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - cmd:        
-    SET PATH=C:\Ruby24\bin;C:\Ruby24\bin\gem;%PATH%
+    SET PATH=C:\Ruby24\bin;%PATH%
+
+    dir C:\Ruby24\bin
 
     SET PATH
 
