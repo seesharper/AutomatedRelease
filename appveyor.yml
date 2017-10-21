@@ -11,7 +11,7 @@ build_script:
 
     gem install github_changelog_generator --prerelease --force
 
-    refreshenv
+
 
     dir C:\Ruby24\bin
 
