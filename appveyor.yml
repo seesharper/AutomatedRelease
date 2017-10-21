@@ -13,7 +13,7 @@ build_script:
 
     dir C:\Ruby24\bin
 
-    github_changelog_generator -v
+    C:\Ruby24\bin\github_changelog_generator -v
     
 test: off
 environment:
