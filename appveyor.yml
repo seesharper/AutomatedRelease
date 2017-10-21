@@ -4,31 +4,15 @@ image: Visual Studio 2017
 build_script:
 - ps: >- 
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
-- cmd:        
+- cmd: >-       
     SET PATH=C:\Ruby24\bin;%PATH%
-
-    bundle install
-
-    dir C:\Ruby24\bin
-
-    SET PATH
-
-    dir c:\Ruby*
-
-    gem --version
-
-    refreshenv
 
     gem install github_changelog_generator --prerelease --force
 
     refreshenv
 
     github_changelog_generator -v
-
-    cd build
     
-    dotnet script build.csx
-
 test: off
 environment:
     GITHUB_REPO_TOKEN:
