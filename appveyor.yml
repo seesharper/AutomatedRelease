@@ -14,7 +14,10 @@ build_script:
     dir C:\Ruby24\bin
 
     C:\Ruby24\bin\github_changelog_generator -v
-    
+
+- cmd: 
+    github_changelog_generator -v
+
 test: off
 environment:
     GITHUB_REPO_TOKEN:
