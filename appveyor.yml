@@ -7,7 +7,9 @@ build_script:
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 - cmd:        
     SET PATH=C:\Ruby21\bin;%PATH%
-    
+
+    dir c:\Ruby*
+
     refreshenv
 
     gem install github_changelog_generator --prerelease --force
