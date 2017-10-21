@@ -5,14 +5,14 @@ install:
 build_script:
 - ps: >- 
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
-        
-    $env:Path += ";C:\Ruby21\bin"    
+- cmd:        
+    SET PATH=C:\Ruby21\bin;%PATH%
     
     refreshenv
 
-    cd .\build\
+    cd build
     
-    dotnet script .\Build.csx
+    dotnet script build.csx
 
 test: off
 environment:
