@@ -13,6 +13,8 @@ build_script:
 
     dir c:\Ruby*
 
+    gem --version
+
     refreshenv
 
     gem install github_changelog_generator --prerelease --force
