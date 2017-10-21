@@ -10,6 +10,12 @@ build_script:
     
     refreshenv
 
+    gem install github_changelog_generator --prerelease --force
+
+    refreshenv
+
+    github_changelog_generator -v
+
     cd build
     
     dotnet script build.csx
