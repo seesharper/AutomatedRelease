@@ -11,6 +11,8 @@ build_script:
 
     refreshenv
 
+    dir C:\Ruby24\bin
+
     github_changelog_generator -v
     
 test: off
