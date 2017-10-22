@@ -19,8 +19,6 @@ build_script:
 
     gem install github_changelog_generator --prerelease --force
 
-
-
     dir C:\Ruby24\bin
 
     C:\Ruby24\bin\github_changelog_generator -v
@@ -32,6 +30,8 @@ build_script:
     cd build
 
     refreshenv
+
+    SET PATH=C:\Ruby24\bin;%PATH%
 
     dotnet script build.csx
 
