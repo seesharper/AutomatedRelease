@@ -15,6 +15,8 @@ DotNet.Publish(BuildContext.PathToProjectFolder);
 DotNet.Pack(BuildContext.PathToProjectFolder, BuildContext.NuGetPackagesFolder);
 GitHub.Pack(BuildContext.PathToPublishFolder, BuildContext.GitHubReleaseFolder);
 
+Logger.Log("IsTagCommit " +  Git.IsTagCommit().ToString());
+
 if (Git.IsOnMaster() && Git.IsTagCommit())
 {        
     Logger.Log("We are on a tag commit.");

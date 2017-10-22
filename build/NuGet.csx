@@ -17,6 +17,7 @@ public static class NuGet
             }
             catch (Exception ex)
             {
+                // If we come here it is probably because the package already exists.
                 Logger.Log(ex.ToString());
             }            
         }
