@@ -9,8 +9,6 @@
 #load "GitHub.csx"
 #load "NuGet.csx"
 
-using System.Net.Http;
-
 DotNet.Build(BuildContext.PathToProjectFolder);
 DotNet.Publish(BuildContext.PathToProjectFolder);
 DotNet.Pack(BuildContext.PathToProjectFolder, BuildContext.NuGetPackagesFolder);
