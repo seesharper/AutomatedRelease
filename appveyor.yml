@@ -3,25 +3,14 @@ image: Visual Studio 2017
 
 build_script:
 - ps: >- 
-    (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
+    (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex 
 
-    # $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + "C:\Ruby24\bin"
-
-    # gem install github_changelog_generator --prerelease --force
-
-    # cd .\build\
-
-    # dotnet script .\Build.csx
 - cmd: >-       
     SET PATH=C:\Ruby24\bin;%PATH%
 
     
 
     gem install github_changelog_generator --prerelease --force
-
-    dir C:\Ruby24\bin
-
-    C:\Ruby24\bin\github_changelog_generator -v
 
     github_changelog_generator -v
 
