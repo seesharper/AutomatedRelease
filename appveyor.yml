@@ -4,6 +4,10 @@ image: Visual Studio 2017
 build_script:
 - ps: >- 
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
+
+    cd .\build\
+
+    dotnet script .\Build.csx
 - cmd: >-       
     SET PATH=C:\Ruby24\bin;%PATH%
 
