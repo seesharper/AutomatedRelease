@@ -15,9 +15,9 @@ public static class NuGet
             {
                 Command.Execute("nuget", $"push {packageFile} -Source {source} -ApiKey {ApiKey}");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                Logger.Log(ex.ToString());
             }            
         }
     }

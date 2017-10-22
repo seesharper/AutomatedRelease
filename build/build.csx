@@ -8,6 +8,7 @@
 #load "FileUtils.csx"
 #load "GitHub.csx"
 #load "NuGet.csx"
+#load "Logger.csx"
 
 DotNet.Build(BuildContext.PathToProjectFolder);
 DotNet.Publish(BuildContext.PathToProjectFolder);
@@ -16,6 +17,7 @@ GitHub.Pack(BuildContext.PathToPublishFolder, BuildContext.GitHubReleaseFolder);
 
 if (Git.IsOnMaster() && Git.IsTagCommit())
 {        
+    Logger.Log("We are on a tag commit.");
     NuGet.Push(BuildContext.NuGetPackagesFolder);
     GitHub.CreateReleaseDraft(BuildContext.GitHubReleaseFolder);       
 }
