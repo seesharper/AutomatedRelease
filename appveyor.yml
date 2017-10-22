@@ -5,6 +5,8 @@ build_script:
 - ps: >- 
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex
 
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
     cd .\build\
 
     dotnet script .\Build.csx
