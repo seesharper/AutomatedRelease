@@ -8,7 +8,7 @@ public static class ChangeLog
     {
         try
         {
-            Command.Execute("cmd.exe", "/c gem install github_changelog_generator --prerelease --force");    
+            //Command.Execute("cmd.exe", "/c gem install github_changelog_generator --prerelease --force");    
         }
         catch (System.Exception)
         {            
