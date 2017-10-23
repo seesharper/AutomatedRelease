@@ -12,13 +12,9 @@ build_script:
     refreshenv
 
     SET PATH=C:\Ruby24\bin;%PATH%
-
     
-
     dotnet script build.csx
-
     
-
 test: off
 environment:
     GITHUB_REPO_TOKEN:
