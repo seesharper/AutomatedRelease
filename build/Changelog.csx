@@ -1,5 +1,6 @@
 #load "Command.csx"
 #load "Git.csx"
+#load "Logger.csx"
 using System.Text.RegularExpressions;
 
 public static class ChangeLog
@@ -18,7 +19,8 @@ public static class ChangeLog
         var match = Regex.Match(urlToPushOrigin, @".*.com\/(.*)\/(.*)\.");
         var user = match.Groups[1].Value;
         var project = match.Groups[2].Value;
-        var token = Git.GetAccessToken();                
+        var token = Git.GetAccessToken();              
+        Logger.Log($"Creating changelog since tag {sinceTag}");
         var args = $"/c github_changelog_generator --user {user} --project {project} --since-tag {sinceTag} --token {token} --output {pathToChangeLog}";
         if (isTagCommit)
         {
