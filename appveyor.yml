@@ -13,7 +13,7 @@ build_script:
 
     SET PATH=C:\Ruby24\bin;%PATH%
     
-    dotnet script build.csx
+    dotnet script -d build.csx
     
 test: off
 environment:
