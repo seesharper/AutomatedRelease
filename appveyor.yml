@@ -5,15 +5,6 @@ build_script:
 - ps: >- 
     (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/filipw/dotnet-script/master/install/install.ps1") | iex 
 
-- cmd: >-       
-    SET PATH=C:\Ruby24\bin;%PATH%
-
-    
-
-    gem install github_changelog_generator --prerelease --force
-
-    github_changelog_generator -v
-
 - cmd: >-
     
     cd build
@@ -21,6 +12,8 @@ build_script:
     refreshenv
 
     SET PATH=C:\Ruby24\bin;%PATH%
+
+    gem install github_changelog_generator --prerelease --force
 
     dotnet script build.csx
 
