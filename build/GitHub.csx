@@ -25,8 +25,7 @@ public static class GitHub
         var client = new GitHubClient(new ProductHeaderValue("dotnet-script"));
         string latestTag = Git.GetLatestTag();
         var releaseNotes = FileUtils.ReadFile(Path.Combine(githubReleaseFolder,"CHANGELOG.MD"));                        
-        var newRelease = new NewRelease(latestTag);
-        Logger.Log(releaseNotes);
+        var newRelease = new NewRelease(latestTag);    
         newRelease.Name = latestTag;
         newRelease.Body = releaseNotes;
         newRelease.Draft = true;        

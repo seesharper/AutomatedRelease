@@ -1,6 +1,7 @@
 #load "Command.csx"
 #load "Git.csx"
 #load "Logger.csx"
+#load "FileUtils.csx"
 using System.Text.RegularExpressions;
 
 public static class ChangeLog
@@ -28,6 +29,7 @@ public static class ChangeLog
         }        
 
         Command.Execute("cmd.exe",args);
-        
+        var changeLogContent = FileUtils.ReadFile(pathToChangeLog);
+        Logger.Log(changeLogContent);
     }
 }
