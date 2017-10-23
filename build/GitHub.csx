@@ -3,6 +3,7 @@
 #load "FileUtils.csx"
 #load "Git.csx"
 #load "FileUtils.csx"
+#load "Logger.csx"
 
 using Octokit;
 public static class GitHub
@@ -23,8 +24,8 @@ public static class GitHub
         var accessToken = System.Environment.GetEnvironmentVariable("GITHUB_REPO_TOKEN");
         var client = new GitHubClient(new ProductHeaderValue("dotnet-script"));
         string latestTag = Git.GetLatestTag();
-        var releaseNotes = FileUtils.ReadFile(Path.Combine(githubReleaseFolder,"CHANGELOG.MD"));                
-        var newRelease = new NewRelease(latestTag);
+        var releaseNotes = FileUtils.ReadFile(Path.Combine(githubReleaseFolder,"CHANGELOG.MD"));                        
+        var newRelease = new NewRelease(latestTag);    
         newRelease.Name = latestTag;
         newRelease.Body = releaseNotes;
         newRelease.Draft = true;        
