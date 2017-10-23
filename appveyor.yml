@@ -13,7 +13,7 @@ build_script:
 
     SET PATH=C:\Ruby24\bin;%PATH%
 
-    # gem install github_changelog_generator --prerelease --force
+    
 
     dotnet script build.csx
 
